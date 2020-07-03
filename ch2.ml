@@ -8,5 +8,3 @@ let rec power x n = if n = 1 then x else x * power x (n - 1)
 
 let is_consonant c = not (c = 'a' || c = 'e' || c = 'i' || c = 'o' || c = 'u')
 
-let x = 1 in let x = 2 in x + x
-
