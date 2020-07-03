@@ -39,3 +39,20 @@ let rec list_of_tree t =
 
 let rec combine d d' = tree_of_list (list_of_tree d @ list_of_tree d')
 
+type 'a n_tree = Lf | Nd of 'a * 'a n_tree list
+
+let rec tree_map f t =
+  match t with
+    Lf -> Lf
+  | Nd (x,xs) -> Nd (f x, map (tree_map f) xs)
+
+
+let rec size t =
+  match t with
+    Lf -> 0
+  | Nd (x,xs) -> 1 + (foldr (+) 0 (map size xs))
+
+let rec total t =
+  match t with
+    Lf -> 0
+  | Nd (x,xs) -> x + (foldr (+) 0 (map total xs))
